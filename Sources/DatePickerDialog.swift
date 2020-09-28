@@ -98,6 +98,11 @@ open class DatePickerDialog: UIView {
         self.doneButton.setTitle(doneButtonTitle, for: .normal)
         if showCancelButton { self.cancelButton.setTitle(cancelButtonTitle, for: .normal) }
         self.datePickerMode = datePickerMode
+        if #available(iOS 13.4, *) {
+            self.datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         self.callback = callback
         self.defaultDate = defaultDate
         self.datePicker.datePickerMode = self.datePickerMode ?? UIDatePicker.Mode.date
